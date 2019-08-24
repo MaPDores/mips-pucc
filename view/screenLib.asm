@@ -25,7 +25,7 @@
 	
 	exibMensal: 		.asciiz 	"O valor total de gastos no mes foi: "
 	
-	exibCategoria: 	.asciiz 	"O valor total de gastos por categoria foi: "
+	exibCategoria: 		.asciiz 	"O valor total de gastos por categoria foi: "
 	
 	exibRanking:		.asciiz		"----------RANKING----------"
 	
