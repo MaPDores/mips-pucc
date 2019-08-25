@@ -1,4 +1,4 @@
-	.include "./repository.asm"
+	.include "model/repository.asm"
 	.data
 	data_size:	.word	4
 	space:		.ascii	" "
