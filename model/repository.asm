@@ -1,10 +1,10 @@
-.macro create_node # Aloca memoria e salva em $v0
+create_node: # Aloca memoria e salva em $v0
 	lw $a0, data_size
 	add $a0, $a0, 4
 	li $v0, 9
 	syscall
 	sw $zero, 4($v0)
-.end_macro
+	jr: $ra
 
 .macro add_node (%register_with_new, %register_with_current)
 	lw $a0, 4(%register_with_current) 		# a0 = current->next 
