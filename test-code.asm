@@ -12,8 +12,8 @@
 
 print_list:
 	la $t9, ($s0)
-loop:	li $v0, 1
-	lw $a0, ($t9)
+loop:	li $v0, 2
+	l.s $f12, ($t9)
 	syscall
 
 	li $v0, 11
@@ -26,19 +26,26 @@ loop:	li $v0, 1
 end:	jr $ra
 
 main:
+
+	
 	jal create_node
 	la $s0, ($v0)
 	la $t0, ($s0) 
 	#--$s0 guarda a lista, $t0 é para percorrê-la--#
-	li $t1, 123	#123 em t2
-	sw $t1, ($t0)	#t0 => | 123 | null |
+	li $v0, 6
+  	syscall
+ 	
+	s.s $f0, ($t0)	#t0 => | 123 | null |
 	# repeat
+	
 	jal create_node
 	la $t2, ($v0)
-	li $t1, 321	#123 em t2
-	sw $t1, ($t2)	#t2 => | 123 | null |
-	push_node($t2, $s0)
-	la $t0, ($t2)
+	la $t1, ($t2)	#123 em t2
+	li $v0, 6
+	syscall
+	
+	s.s $f0, ($t1)
+	
 	# repeat
 	jal create_node
 	la $t2, ($v0)
