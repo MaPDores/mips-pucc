@@ -1,6 +1,12 @@
 	.include "database/repository.asm"
 	.data
-	space:		.ascii	" "
+	#Codigo apenas para testes...
+	
+	space:		.ascii		" "
+	out_string: 	.asciiz 	"\nDigite o dia: "
+	out_string2: 	.asciiz 	"\nDigite o mes: "
+	out_string3: 	.asciiz 	"\nDigite o ano: "
+	
 
 	#-----------------Estrutura do Database-------------------#
 	# _____________________1b_________________________________#
@@ -26,47 +32,52 @@ loop:	li $v0, 2
 end:	jr $ra
 
 main:
-
 	
+	li $v0, 4 # system call code for printing string = 4
+	la $a0, out_string # load address of string to be printed into $a0
+	syscall
+	#? s.s $f0, 100($t2) =  store word from $f0 into address $t2+100
 	jal create_node
 	la $s0, ($v0)
 	la $t0, ($s0) 
-	#--$s0 guarda a lista, $t0 é para percorrê-la--#
+	#--$s0 guarda a lista, $t0 Ã© para percorrÃª-la--#
+
 	li $v0, 6
   	syscall
- 	
+  	push_node($t2, $s0)
 	s.s $f0, ($t0)	#t0 => | 123 | null |
-	# repeat
 	
-	jal create_node
-	la $t2, ($v0)
-	la $t1, ($t2)	#123 em t2
-	li $v0, 6
+	
+
+
+	# repeat
+	li $v0, 4 
+	la $a0, out_string2 
 	syscall
+	jal create_node
+	la $t2, ($v0)
 	
-	s.s $f0, ($t1)
+
 	
+	li $v0, 6
+  	syscall
+  	push_node($t2, $s0)
+	s.s $f0, ($t2)
+	
+
 	# repeat
+	li $v0, 4
+	la $a0, out_string3
+	syscall
 	jal create_node
 	la $t2, ($v0)
-	li $t1, 213	#123 em t2
-	sw $t1, ($t2)	#t2 => | 123 | null |
+
+	li $v0, 6
+  	syscall
 	push_node($t2, $s0)
-	la $t0, ($t2)
-	# repeat
-	jal create_node
-	la $t2, ($v0)
-	li $t1, 111	#123 em t2
-	sw $t1, ($t2)	#t2 => | 123 | null |
-	push_node($t2, $s0)
-	la $t0, ($t2)
-	# repeat
-	jal create_node
-	la $t2, ($v0)
-	li $t1, 1127	#123 em t2
-	sw $t1, ($t2)	#t2 => | 123 | null |
-	push_node($t2, $s0)
-	la $t0, ($t2)
+	s.s $f0, ($t2)
+	
+	#print apenas para teste de saida
 	jal print_list
 	
 	li $v0, 10
