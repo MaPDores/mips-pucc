@@ -1,6 +1,5 @@
 	.include "model/repository.asm"
 	.data
-	data_size:	.word	4
 	space:		.ascii	" "
 
 	#-----------------Estrutura do Database-------------------#
@@ -21,45 +20,45 @@ loop:	li $v0, 1
 	lw $a0, space
 	syscall
 	
-	lw $t9, 4($t9)
+	lw $t9, 32($t9)
 	beqz $t9, end
 	j loop
 end:	jr $ra
 
 main:
-	create_node
+	jal create_node
 	la $s0, ($v0)
 	la $t0, ($s0) 
 	#--$s0 guarda a lista, $t0 é para percorrê-la--#
 	li $t1, 123	#123 em t2
 	sw $t1, ($t0)	#t0 => | 123 | null |
 	# repeat
-	create_node
+	jal create_node
 	la $t2, ($v0)
 	li $t1, 321	#123 em t2
 	sw $t1, ($t2)	#t2 => | 123 | null |
-	add_node($t2, $t0)
+	push_node($t2, $s0)
 	la $t0, ($t2)
 	# repeat
-	create_node
+	jal create_node
 	la $t2, ($v0)
 	li $t1, 213	#123 em t2
 	sw $t1, ($t2)	#t2 => | 123 | null |
-	add_node($t2, $t0)
+	push_node($t2, $s0)
 	la $t0, ($t2)
 	# repeat
-	create_node
+	jal create_node
 	la $t2, ($v0)
 	li $t1, 111	#123 em t2
 	sw $t1, ($t2)	#t2 => | 123 | null |
-	add_node($t2, $t0)
+	push_node($t2, $s0)
 	la $t0, ($t2)
 	# repeat
-	create_node
+	jal create_node
 	la $t2, ($v0)
 	li $t1, 1127	#123 em t2
 	sw $t1, ($t2)	#t2 => | 123 | null |
-	add_node($t2, $t0)
+	push_node($t2, $s0)
 	la $t0, ($t2)
 	jal print_list
 	
