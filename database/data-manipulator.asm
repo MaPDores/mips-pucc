@@ -8,24 +8,24 @@ instantiate_category: # Salva em $v0 o endereço guardado pra string de categoria
 
 #-----Getter functions-----#
 
-.macro get_id (%node) 		# Salva o ID em $v0
-	lw $a0, (%node)
+.macro get_id (%node) 		# Salva o ID em $a0
+	lw $v0, (%node)
 .end_macro
 
-.macro get_date (%node)		# Salva a data (epoch) em $v0
-	lw $a0, 4(%node)
+.macro get_date (%node)		# Salva a data (since epoch) em $a0
+	lw $v0, 4(%node)
 .end_macro
 
-.macro get_category (%node)	# Salva endereço da categoria em $v0
-	la $a0, 8(%node)
+.macro get_category (%node)	# Salva endereço da categoria em $a0
+	la $v0, 8(%node)
 .end_macro
 
 .macro get_price (%node)
-	l.s $f12, 24(%node)	# Salva preço em $f12
+	l.s $f12, 12(%node)	# Salva preço em $f12
 .end_macro
 
 .macro get_next (%node)
-	lw $a0, 32(%node)
+	lw $v0, 16(%node)
 .end_macro
 
 #--------Setters functions----------

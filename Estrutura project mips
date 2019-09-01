@@ -1,0 +1,14 @@
+- id => 4b
+- data => 4b
+- endereço de categoria (string)=> 4b
+- valor => 4b
+- pointer to next => 4b
+
+(para salvar ponto flutuante usar s.s e para pegar l.s)
+
+PADRONIZAÇÃO DE CÓDIGO
+	$s0 => Guarda início da lista;
+	$s1 => Gerador de ID, guarda o próximo ID a ser salvo na próxima estrutura a ser instanciada;
+	$t0 => Usado para iteração (percorrimento) da lista sempre que necessário;
+	-------------------
+	Registradores Altos como $s7, $t7 e subsequentes de cima pra baixo (7, 6, 5...) devem ser usados nas funções para não estragar os registradores já utilizados
