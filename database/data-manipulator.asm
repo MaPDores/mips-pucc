@@ -2,21 +2,21 @@
 
 instantiate_category: # Salva em $v0 o endereço guardado pra string de categoria
 	li $v0, 9
-	li $a0, 16
+	li $v0, 16
 	syscall
 	jr $ra
 
 #-----Getter functions-----#
 
-.macro get_id (%node) 		# Salva o ID em $a0
+.macro get_id (%node) 		# Salva o ID em $v0
 	lw $v0, (%node)
 .end_macro
 
-.macro get_date (%node)		# Salva a data (since epoch) em $a0
+.macro get_date (%node)		# Salva a data (since epoch) em $v0
 	lw $v0, 4(%node)
 .end_macro
 
-.macro get_category (%node)	# Salva endereço da categoria em $a0
+.macro get_category (%node)	# Salva endereço da categoria em $v0
 	la $v0, 8(%node)
 .end_macro
 
