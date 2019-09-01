@@ -1,10 +1,11 @@
 	.include "database/repository.asm"
+	.include "database/data-manipulator.asm"
+	.include "utils.asm"
 	.data
 	space:		.ascii	" "
 
 	#-----------------Estrutura do Database-------------------#
-	# _____________________1b_________________________________#
-	# | 4b |  8b  |  15b |null|   4b  |          4b          |#
+	# | 4b |  8b  | 4b |   4b  |          4b          |#
 	# | id | data | categoria | valor | ponteiro_pro_proximo |#
 	#---------------------------------------------------------#
 	.text
@@ -25,11 +26,19 @@ loop:	li $v0, 1
 	j loop
 end:	jr $ra
 
+populate:
+	set_id ($t0, $s1)
+	li $v0, 
+	jr $ra
+
+
 main:
 	jal create_node
 	la $s0, ($v0)
-	la $t0, ($s0) 
+	la $t0, ($s0)
+	li $s1, 1
 	#--$s0 guarda a lista, $t0 é para percorrê-la--#
+	set_id ($t0)
 	li $t1, 123	#123 em t2
 	sw $t1, ($t0)	#t0 => | 123 | null |
 	# repeat
@@ -39,28 +48,5 @@ main:
 	sw $t1, ($t2)	#t2 => | 123 | null |
 	push_node($t2, $s0)
 	la $t0, ($t2)
-	# repeat
-	jal create_node
-	la $t2, ($v0)
-	li $t1, 213	#123 em t2
-	sw $t1, ($t2)	#t2 => | 123 | null |
-	push_node($t2, $s0)
-	la $t0, ($t2)
-	# repeat
-	jal create_node
-	la $t2, ($v0)
-	li $t1, 111	#123 em t2
-	sw $t1, ($t2)	#t2 => | 123 | null |
-	push_node($t2, $s0)
-	la $t0, ($t2)
-	# repeat
-	jal create_node
-	la $t2, ($v0)
-	li $t1, 1127	#123 em t2
-	sw $t1, ($t2)	#t2 => | 123 | null |
-	push_node($t2, $s0)
-	la $t0, ($t2)
-	jal print_list
-	
-	li $v0, 10
-	syscall
+
+	end_program 
