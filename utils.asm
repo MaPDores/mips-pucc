@@ -12,3 +12,25 @@
 	li $v0, 10
 	syscall
 .end_macro
+
+compare_string: # Compara strings salvas em $a0 e $a1 e salva em $v0 a comparação
+
+# Load char in $t7 and $t6
+	lb $t7, ($a0)
+	lb $t6, ($a1)
+
+# Compare if it's NULL and if it is, branch do 'end'
+	beq $t7, $0, end
+	beq $t6, $0, end
+
+# Subtract for char comparison
+	sub $v0, $t7, $t6
+	beq $v0, $0, looper
+	j end
+
+looper:
+	addi $a0, $a0, 1
+	addi $a1, $a1, 1
+	j compare_string
+end:
+	jr $ra
