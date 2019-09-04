@@ -3,15 +3,14 @@
 	.include "utils.asm"
 	.data
 	space:		.ascii	" "
-	str1:		.asciiz	"abrc"
-	str2:		.asciiz	"abrd"
+	str1:		.asciiz	"abrca"
+	str2:		.asciiz	"abrcas"
 	.text
 	.globl main
 
 main:	
-	la $a0, str1
-	la $a1, str2
-	jal compare_string
+	li $a0, 2018
+	jal year_to_peralta
 	
 	la $a0, ($v0)
 	li $v0, 1

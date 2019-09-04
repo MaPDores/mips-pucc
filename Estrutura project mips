@@ -12,4 +12,7 @@ PADRONIZAÇÃO DE CÓDIGO
 	$t0 => Usado para iteração (percorrimento) da lista sempre que necessário;
 	$a0-$a3 => Passar parâmetros pra funções, ignorar em Macros;
 	-------------------
-	Registradores Altos como $s7, $t7 e subsequentes de cima pra baixo (7, 6, 5...) devem ser usados nas funções para não estragar os registradores já utilizados
+	Registradores temporários altos como $t7 e subsequentes de cima pra baixo (7, 6 e 5)
+	são utilizados em funções menores, portanto, utilize somente registradores temporários baixos.
+	-------------------
+	Peralta Timestamp representa 01/01/2000 e é contado em dias desde essa data.
