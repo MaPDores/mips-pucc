@@ -1,9 +1,10 @@
 #-----Instantiate category string-----#
 
-instantiate_category: # Salva em $v0 o endereço guardado pra string de categoria
+instantiate_category: # Salva em $v0 o endereï¿½o guardado pra string de categoria
 	li $v0, 9
-	li $v0, 16
+	li $a0, 16
 	syscall
+
 	jr $ra
 
 #-----Getter functions-----#
@@ -12,37 +13,54 @@ instantiate_category: # Salva em $v0 o endereço guardado pra string de categoria
 	lw $v0, (%node)
 .end_macro
 
-.macro get_date (%node)		# Salva a data (since epoch) em $v0
+.macro get_day (%node)		# Salva o dia em $v0
 	lw $v0, 4(%node)
 .end_macro
 
-.macro get_category (%node)	# Salva endereço da categoria em $v0
-	la $v0, 8(%node)
+.macro get_month (%node)		# Salva o mes em $v0
+	lw $v0, 8(%node)
+.end_macro
+
+.macro get_year (%node)		# Salva o ano em $v0
+	lw $v0, 12(%node)
+.end_macro
+
+.macro get_category (%node)	# Salva endereï¿½o da categoria em $v0
+	la $v0, 16(%node)
 .end_macro
 
 .macro get_price (%node)
-	l.s $f12, 12(%node)	# Salva preço em $f12
+	l.s $f12, 20(%node)	# Salva preï¿½o em $f12
 .end_macro
 
 .macro get_next (%node)
-	lw $v0, 16(%node)
+	lw $v0, 24(%node)
 .end_macro
 
 #--------Setters functions----------
 
+
 .macro set_id (%node, %value) 		# Salva o ID em $v0
 	sw %value, (%node)
-	addi %node, %node, 1
+	addi %value, %value, 1
 .end_macro
 
-.macro set_date (%node, %value)		# Salva a data (epoch) em $v0
+.macro set_day (%node, %value)		# Salva a data (epoch) em $v0
 	sw %value, 4(%node)
 .end_macro
 
-.macro set_category (%node, %value)	# Salva endereço da categoria em $v0
+.macro set_month (%node, %value)		# Salva a data (epoch) em $v0
 	sw %value, 8(%node)
 .end_macro
 
+.macro set_year (%node, %value)		# Salva a data (epoch) em $v0
+	sw %value, 12(%node)
+.end_macro
+
+.macro set_category (%node, %value)	# Salva endereï¿½o da categoria em $v0
+	sw %value, 16(%node)
+.end_macro
+
 .macro set_price (%node, %value)
-	s.s %value, 12(%node)	# Salva preço em $f12
+	s.s %value, 20(%node)	# Salva preï¿½o em $f12
 .end_macro

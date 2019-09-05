@@ -1,5 +1,7 @@
 - id => 4b
-- data => 4b
+- dia => 4b
+- mes => 4b
+- ano => 4b
 - endereço de categoria (string)=> 4b
 - valor => 4b
 - pointer to next => 4b
@@ -15,4 +17,3 @@ PADRONIZAÇÃO DE CÓDIGO
 	Registradores temporários altos como $t7 e subsequentes de cima pra baixo (7, 6 e 5)
 	são utilizados em funções menores, portanto, utilize somente registradores temporários baixos.
 	-------------------
-	Peralta Timestamp representa 01/01/2000 e é contado em dias desde essa data.

@@ -38,19 +38,5 @@ end:
 	jr $ra
 #---------------------------------------------------------------#
 
-# Converte ano (int salvo em a0) para Peralta Timestamp
-year_to_peralta:
-	li $t7, 365
-	mulu $v0, $a0, $t7
-	jr $ra
-#-----------------------------------------------------#
-
-# Converte mês (int salvo em a0) para Peralta Timestamp
-month_to_peralta:
-	li $t7, 30,4167
-	mul.s $v0, $a0, $t7
-	jr $ra
-#-----------------------------------------------------#
-
 
 	
