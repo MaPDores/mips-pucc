@@ -8,6 +8,7 @@
 
 	.data
 	recebeString:		.space		16
+	idGenerator:	.word	1
 
 	str1: 			.asciiz 	"1. Registrar Despesa \n"
 	str2: 			.asciiz 	"2. Listar Despesas \n"
@@ -18,12 +19,6 @@
 	str7:  			.asciiz 	"7. Sair \n\n"
 	
 	strOpc:			.asciiz 	"Digite a opcao desejada: "
-	strDia:	 		.asciiz		"Digite o dia da despesa: "
-	strMes:			.asciiz		"Digite o mes da despesa: "
-	strAno:			.asciiz		"Digite o ano da despesa: "
-	strTipoDespesa:  	.asciiz 	"Digite o tipo de despesa: "
-	strGasto: 		.asciiz 	"Digite o valor gasto em reais: "
-	
 	
 	exibID:			.asciiz		"O ID da despesa é: "			
 	exibData: 		.asciiz 	"A data da despesa é: "
@@ -47,43 +42,36 @@ main:
   	la $a0, str1
   	syscall
  
-  	li $v0, 4
   	la $a0, str2
   	syscall
  
-  	li $v0, 4
   	la $a0, str3
   	syscall
  
-  	li $v0, 4
   	la $a0, str4
   	syscall
  
-  	li $v0, 4
   	la $a0, str5
   	syscall
 
- 	li $v0, 4
   	la $a0, str6
   	syscall 
   	
-  	li $v0, 4
   	la $a0, str7
   	syscall
   	
-  	li $v0, 4
   	la $a0, strOpc
   	syscall
   	
   	li $v0, 5
   	syscall
-  	
+	
   	beq $v0, 1, registrarDespesa
-  	beq $v0, 2, listaDespesa
-  	beq $v0, 3, excluiDespesa	
-  	beq $v0, 4, exibirMensal
-  	beq $v0, 5, exibirCategoria
-  	beq $v0, 6, exibirRanking	
+  	# beq $v0, 2, listaDespesa
+  	# beq $v0, 3, excluiDespesa	
+  	# beq $v0, 4, exibirMensal
+  	# beq $v0, 5, exibirCategoria
+  	# beq $v0, 6, exibirRanking	
    	beq $v0, 7, Exit
 	j main
 

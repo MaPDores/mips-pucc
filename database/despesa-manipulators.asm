@@ -4,7 +4,7 @@ instantiate_category: # Salva em $v0 o endere�o guardado pra string de categor
 	li $v0, 9
 	li $a0, 16
 	syscall
-
+	add $a0, $v0, $zero
 	jr $ra
 
 #-----Getter functions-----#
@@ -26,7 +26,7 @@ instantiate_category: # Salva em $v0 o endere�o guardado pra string de categor
 .end_macro
 
 .macro get_category (%node)	# Salva endere�o da categoria em $v0
-	la $v0, 16(%node)
+	lw $v0, 16(%node)
 .end_macro
 
 .macro get_price (%node)
@@ -40,9 +40,11 @@ instantiate_category: # Salva em $v0 o endere�o guardado pra string de categor
 #--------Setters functions----------
 
 
-.macro set_id (%node, %value) 		# Salva o ID em $v0
-	sw %value, (%node)
-	addi %value, %value, 1
+.macro set_id (%node, %value)		# Salva o ID em $v0
+	lw $t7, (%value)
+	sw $t7, (%node)
+	addi $t7, $t7, 1
+	sw $t7, (%value)
 .end_macro
 
 .macro set_day (%node, %value)		# Salva a data (epoch) em $v0

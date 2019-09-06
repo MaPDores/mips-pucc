@@ -2,7 +2,7 @@ create_node: # Aloca memoria e salva em $v0
 	li $a0, 28
 	li $v0, 9
 	syscall
-	sw $zero, 4($v0)
+	sw $zero, 24($v0)
 	jr $ra
 
 .macro add_node (%register_with_new, %register_with_current)

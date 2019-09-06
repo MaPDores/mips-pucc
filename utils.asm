@@ -1,3 +1,9 @@
+	.data
+	bar:	.asciiz	"/"
+	lf:  			.asciiz 	"\n"
+
+	.text
+
 .macro	push (%data)
 	addi $sp, $sp, -4
 	sw %data, ($sp)
@@ -8,12 +14,18 @@
 	addi $sp, $sp, 4
 .end_macro
 
+.macro	linefeed
+	li $v0, 4
+  	la $a0, lf
+  	syscall
+.end_macro
+
 .macro	end_program
 	li $v0, 10
 	syscall
 .end_macro
 
-# Compara strings salvas em $a0 e $a1 e salva em $v0 a comparação
+# Compara strings salvas em $a0 e $a1 e salva em $v0 a comparaï¿½ï¿½o
 compare_string:
 
 # Load char in $t7 and $t6
@@ -37,6 +49,34 @@ end:
 	sub $v0, $t7, $t6
 	jr $ra
 #---------------------------------------------------------------#
+
+# Pega os 3 valores da pilha e printa com '/' entre eles #
+print_date:
+	pop($t7)
+	add $a0, $t7, $zero
+	li $v0, 1
+	syscall
+
+	li $v0, 4
+	la $a0, bar
+	syscall
+	
+	pop($t7)
+	add $a0, $t7, $zero
+	li $v0, 1
+	syscall
+
+	li $v0, 4
+	la $a0, bar
+	syscall
+	
+	pop($t7)
+	add $a0, $t7, $zero
+	li $v0, 1
+	syscall
+
+	jr $ra
+# ------------------------------------------------------ #
 
 
 	
