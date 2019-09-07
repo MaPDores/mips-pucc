@@ -1,4 +1,4 @@
-exclui_despesa:
+excluiDespesa:
 	
 	li $v0, 4
 	la $a0, excluirDespesa

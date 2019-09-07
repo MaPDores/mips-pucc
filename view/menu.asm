@@ -1,9 +1,9 @@
 	.include "../utils.asm"
 	.include "../controller/read.asm"
-	.include "../controller/list.asm"
 	.include "../controller/per-ranking.asm"
 	.include "../controller/per-category.asm"
 	.include "../controller/per-month.asm"
+	.include "../controller/list.asm"
 	.include "../controller/delete.asm"
 
 	.data
@@ -20,11 +20,16 @@
 	
 	strOpc:			.asciiz 	"Digite a opcao desejada: "
 	
+	exibID:			.asciiz		"O ID da despesa é: "			
+	exibData: 		.asciiz 	"A data da despesa é: "
+	exibTipo:		.asciiz 	"O tipo da despesa é: "
+	exibValor:		.asciiz		"O valor gasto é: "
+	
 	excluirDespesa: 	.asciiz 	"Digite o ID da despesa que deseja excluir: "
 	
-	exibPorMes: 		.asciiz 	"O valor total de gastos no mes foi: "
+	exibMensal: 		.asciiz 	"O valor total de gastos no mes foi: "
 	
-	exibPorCategoria: 		.asciiz 	"O valor total de gastos por categoria foi: "
+	exibCategoria: 		.asciiz 	"O valor total de gastos por categoria foi: "
 	
 	exibRanking:		.asciiz		"----------RANKING----------"
 	
@@ -61,16 +66,15 @@ main:
   	li $v0, 5
   	syscall
 	
-  	beq $v0, 1, registrar_despesa
-  	beq $v0, 2, lista_despesa
-  	# beq $v0, 3, exclui_despesa	
-  	# beq $v0, 4, exibir_mensal
-  	# beq $v0, 5, exibir_categoria
-  	# beq $v0, 6, exibir_ranking	
+  	beq $v0, 1, registrarDespesa
+  	# beq $v0, 2, listaDespesa
+  	# beq $v0, 3, excluiDespesa	
+  	# beq $v0, 4, exibirMensal
+  	# beq $v0, 5, exibirCategoria
+  	# beq $v0, 6, exibirRanking	
    	beq $v0, 7, Exit
-
 	j main
 
 #---------------------------------------#
- Exit:
+ Exit: 
   	end_program
