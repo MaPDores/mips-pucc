@@ -1,7 +1,8 @@
-exibirMensal:
+	.text
+exibir_mensal:
 	
 	li $v0, 4
-	la $a0, exibMensal
+	la $a0, exibPorMes
 	syscall
 	
 	j main
