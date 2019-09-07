@@ -41,7 +41,7 @@ registrarDespesa:
   	syscall
 
 	set_day($t0, $v0)
-	# -------------------------- #
+	# -------------------- #
 
  	# Leitura e Set do Mês #
  	li $v0, 4
@@ -52,7 +52,7 @@ registrarDespesa:
   	syscall
 
 	set_month($t0, $v0)
-	# -------------------------- #
+	# -------------------- #
 
 	# Leitura e Set do Ano #
  	li $v0, 4
@@ -63,7 +63,7 @@ registrarDespesa:
   	syscall
 
 	set_year($t0, $v0)
-	# -------------------------- #
+	# -------------------- #
 
 	# Leitura e Set do Preço #
  	li $v0, 4
@@ -74,39 +74,39 @@ registrarDespesa:
 	syscall
 
 	set_price($t0, $f0)
-	# -------------------------- #
+	# ---------------------- #
 
-	linefeed
-	linefeed
+	# linefeed
+	# linefeed
 
-	get_id($t0)
-	move $a0, $v0
-	li $v0, 1
-	syscall
+	# get_id($t0)
+	# move $a0, $v0
+	# li $v0, 1
+	# syscall
 
-	linefeed
+	# linefeed
 
-	get_year($t0)
-	push($v0)
-	get_month($t0)
-	push($v0)
-	get_day($t0)
-	push($v0)
-	jal print_date
+	# get_year($t0)
+	# push($v0)
+	# get_month($t0)
+	# push($v0)
+	# get_day($t0)
+	# push($v0)
+	# jal print_date
 
-	linefeed
+	# linefeed
 
-	get_category($t0)
-  	add $a0, $v0, $zero
- 	li $v0, 4
-  	syscall
+	# get_category($t0)
+  	# add $a0, $v0, $zero
+ 	# li $v0, 4
+  	# syscall
 
-	li $v0, 2
-	get_price($t0)
-    syscall
+	# li $v0, 2
+	# get_price($t0)
+    # syscall
 
-	li $v0, 5
-  	syscall
+	# li $v0, 5
+  	# syscall
 
 
 	end_program
