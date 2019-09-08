@@ -1,0 +1,19 @@
+- id => 4b
+- dia => 4b
+- mes => 4b
+- ano => 4b
+- endereço de categoria (string)=> 4b
+- valor => 4b
+- pointer to next => 4b
+
+(para salvar ponto flutuante usar s.s e para pegar l.s)
+
+PADRONIZAÇÃO DE CÓDIGO
+	$s0 => Guarda início da lista;
+	$s1 => Gerador de ID, guarda o próximo ID a ser salvo na próxima estrutura a ser instanciada;
+	$t0 => Usado para iteração (percorrimento) da lista sempre que necessário;
+	$a0-$a3 => Passar parâmetros pra funções, ignorar em Macros;
+	-------------------
+	Registradores temporários altos como $t7 e subsequentes de cima pra baixo (7, 6 e 5)
+	são utilizados em funções menores, portanto, utilize somente registradores temporários baixos.
+	-------------------

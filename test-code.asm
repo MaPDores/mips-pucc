@@ -7,12 +7,6 @@
 	out_string2: 	.asciiz 	"\nDigite o mes: "
 	out_string3: 	.asciiz 	"\nDigite o ano: "
 	
-
-	#-----------------Estrutura do Database-------------------#
-	# _____________________1b_________________________________#
-	# | 4b |  8b  |  15b |null|   4b  |          4b          |#
-	# | id | data | categoria | valor | ponteiro_pro_proximo |#
-	#---------------------------------------------------------#
 	.text
 	.globl main	
 

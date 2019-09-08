@@ -1,0 +1,1 @@
+java -jar mars4_5.jar sm index.asm
