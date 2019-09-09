@@ -14,5 +14,7 @@ looper_lista_despesa:
 	j looper_lista_despesa
 
 end_lista_despesa:
+	pause
+
 	pop($ra)
   	jr $ra
