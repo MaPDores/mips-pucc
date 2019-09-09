@@ -1,0 +1,84 @@
+	.data
+	Vetor: 		.float 		1, 3.4, 1.6, 36.4, 0.0, 5.5, 22.3, 6.1, 1.6, 9.6, 22.3, 25.5, 13.9, 54.1, 11.5, 7.1, 29.6, 4.6
+	str1: 		.asciiz		"Digite o tamanho do vetor: "
+	str2:		.asciiz		"Valores ordenados: "
+
+	
+
+	.text
+	.globl main
+	
+main:
+	add $t1, $zero, $v0
+	
+	li $v0, 4
+	la $a0, str1
+	syscall
+	
+	
+	li $t0, 18
+	li $t5, 18
+	
+	la   $t3, Vetor
+	
+	 
+decrescer:
+
+	beqz $t0, exit 
+	
+	addi $t0, $t0, -1
+	addi $t5, $t5, -1
+	
+	blez $t5, reseta
+	
+	l.s $f2, 0($t3) 
+	l.s $f4, 4($t3) 	
+	
+	c.lt.s $f2, $f4
+	bc1t troca2
+	c.eq.s $f2, $f4
+	bc1t nao_troca
+	
+	addi $t3, $t3, 4 
+	j decrescer
+	
+	li $v0, 4
+	la $a0, str1
+	syscall
+	
+	li      $v0, 0
+    la      $t1, Vetor
+    	
+	
+troca: 	
+	s.s $f4, 0($t3) 
+	s.s $f2, 4($t3) 
+	addi $t3, $t3, 4 
+	
+	li $t0, 0 
+	addi $t0, $t0, 16 
+	
+
+
+troca2: 
+	s.s $f4, 0($t3) 
+	s.s $f2, 4($t3) 
+	addi $t3, $t3, 4 
+	
+	li $t0, 0 
+	addi $t0, $t0, 16 
+	j decrescer
+	
+nao_troca:
+	addi $t3, $t3, 4 
+	j decrescer
+	
+reseta: 
+	la $t3, Vetor 
+	li $t5, 17 
+	j decrescer
+
+	
+exit: 
+	li $v0, 10 
+	syscall
