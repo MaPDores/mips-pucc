@@ -1,11 +1,9 @@
 	.data
 	bar:	.asciiz		"/"
 	lf:  	.asciiz 	"\n"
-
-    divisor:          .asciiz     "------------------"
-
+    divisor_bar:          .asciiz     "---------------------\n"
+	
 	.text
-
 .macro	push (%data)
 	addi $sp, $sp, -4
 	sw %data, ($sp)
@@ -25,6 +23,12 @@
 .macro	linefeed
 	li $v0, 4
   	la $a0, lf
+  	syscall
+.end_macro
+
+.macro	divisor
+	li $v0, 4
+  	la $a0, divisor_bar
   	syscall
 .end_macro
 

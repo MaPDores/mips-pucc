@@ -1,13 +1,19 @@
-    .include "../database/linked-list.asm"
-	.include "../database/despesa-manipulators.asm"
-	.include "../view/read.asm"
-
 	.text
 registrar_despesa:
+	push($ra)
 
 	jal create_node
 	add $t0, $v0, $zero
 
+	bne $s0, 0, not_first_node
+
+	add $s0, $v0, $zero
+	j first_node
+
+not_first_node:
+	push_node($t0, $s0)
+
+first_node:
 	# Seta o ID #
 	la $t1, idGenerator
 	set_id($t0, $t1)
@@ -60,5 +66,8 @@ registrar_despesa:
 
 	set_price($t0, $f0)
 	# ---------------------- #
+	
+	divisor
 
+	pop($ra)
 	jr $ra

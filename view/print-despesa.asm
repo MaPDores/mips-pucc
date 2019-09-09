@@ -1,67 +1,56 @@
-	.include "../utils.asm"
-
 	.data
 	exibID:				.asciiz		"ID: "			
 	exibData: 			.asciiz 	"data: "
 	exibCategoria:		.asciiz 	"categoria: "
-	exibValor:			.asciiz		"valor: "
+	exibPreco:			.asciiz		"valor: "
 	
 	.text
-print_despesa:  # Usa os registradores $v0, $a0, $t0
-
+print_id:
 	li $v0, 4
   	la $a0, exibID
   	syscall
 
-	get_id($t0)
-	move $a0, $v0
+	move $a0, $a1
 	li $v0, 1
 	syscall
 
 	linefeed
 
-
-  	li $v0, 4
-  	la $a0, exibData
-  	syscall
-
-	get_year($t0)
-	push($v0)
-	get_month($t0)
-	push($v0)
-	get_day($t0)
-	push($v0)
-	jal print_date
-
-	linefeed
+	jr $ra
 
 
-  	li $v0, 4
+print_category:
+	li $v0, 4
   	la $a0, exibCategoria
   	syscall
 
-	get_category($t0)
-  	add $a0, $v0, $zero
- 	li $v0, 4
+	move $a0, $a1
+	li $v0, 4
+	syscall
+
+	jr $ra
+
+
+print_price:
+	li $v0, 4
+  	la $a0, exibPreco
   	syscall
 
-
-  	li $v0, 4
-  	la $a0, exibValor
-  	syscall  	
-
 	li $v0, 2
-	get_price($t0)
-    syscall
+	syscall
 
-  	li $v0, 4
-  	la $a0, divisor
-  	syscall  	
+	linefeed
+	divisor
 
-    jr $ra
+	jr $ra
+
 
 # Pega os 3 valores da pilha e printa com '/' entre eles #
 print_date:
+	li $v0, 4
+  	la $a0, exibData
+  	syscall
+
 	pop($t7)
 	add $a0, $t7, $zero
 	li $v0, 1
@@ -84,6 +73,8 @@ print_date:
 	add $a0, $t7, $zero
 	li $v0, 1
 	syscall
+
+	linefeed
 
 	jr $ra
 # ------------------------------------------------------ #

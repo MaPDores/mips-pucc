@@ -1,11 +1,3 @@
-	.include "../utils.asm"
-	.include "../controller/read.asm"
-	.include "../controller/list.asm"
-	.include "../controller/per-ranking.asm"
-	.include "../controller/per-category.asm"
-	.include "../controller/per-month.asm"
-	.include "../controller/delete.asm"
-
 	.data
 	recebeString:		.space		16
 	idGenerator:	.word	1
@@ -27,12 +19,18 @@
 	exibPorCategoria: 		.asciiz 	"O valor total de gastos por categoria foi: "
 	
 	exibRanking:		.asciiz		"----------RANKING----------"
+
+	noList:			.asciiz		"\n\nYour List is Empty!\n\n"
 	
 	.text
 	.globl main
-	
-main:
 
+no_list:
+	li $v0, 4
+  	la $a0, noList
+  	syscall
+
+main:
 	li $v0, 4
   	la $a0, str1
   	syscall
@@ -61,16 +59,40 @@ main:
   	li $v0, 5
   	syscall
 	
-  	beq $v0, 1, registrar_despesa
-  	beq $v0, 2, lista_despesa
-  	# beq $v0, 3, exclui_despesa	
-  	# beq $v0, 4, exibir_mensal
-  	# beq $v0, 5, exibir_categoria
-  	# beq $v0, 6, exibir_ranking	
+  	beq $v0, 1,   jal_registrar_despesa
+  	beq $v0, 2,   jal_lista_despesa
+  	# beq $v0, 3, jal_exclui_despesa	
+  	# beq $v0, 4, jal_exibir_mensal
+  	# beq $v0, 5, jal_exibir_categoria
+  	# beq $v0, 6, jal_exibir_ranking	
    	beq $v0, 7, Exit
 
 	j main
 
 #---------------------------------------#
- Exit:
+jal_registrar_despesa:
+	jal registrar_despesa
+	j main
+
+jal_lista_despesa:
+	jal lista_despesa
+	j main
+
+jal_exclui_despesa:
+	jal exclui_despesa
+	j main
+
+jal_exibir_mensal:
+	jal exibir_mensal
+	j main
+
+jal_exibir_categoria:
+	jal exibir_categoria
+	j main
+
+jal_exibir_ranking:
+	jal exibir_ranking
+	j main
+
+Exit:
   	end_program
