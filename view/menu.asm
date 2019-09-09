@@ -12,11 +12,16 @@
 	
 	strOpc:			.asciiz 	"Digite a opcao desejada: "
 	
+	exibID:			.asciiz		"O ID da despesa é: "			
+	exibData: 		.asciiz 	"A data da despesa é: "
+	exibTipo:		.asciiz 	"O tipo da despesa é: "
+	exibValor:		.asciiz		"O valor gasto é: "
+	
 	excluirDespesa: 	.asciiz 	"Digite o ID da despesa que deseja excluir: "
 	
-	exibPorMes: 		.asciiz 	"O valor total de gastos no mes foi: "
+	exibMensal: 		.asciiz 	"O valor total de gastos no mes foi: "
 	
-	exibPorCategoria: 		.asciiz 	"O valor total de gastos por categoria foi: "
+	exibCategoria: 		.asciiz 	"O valor total de gastos por categoria foi: "
 	
 	exibRanking:		.asciiz		"----------RANKING----------"
 
@@ -66,7 +71,6 @@ main:
   	# beq $v0, 5, jal_exibir_categoria
   	# beq $v0, 6, jal_exibir_ranking	
    	beq $v0, 7, Exit
-
 	j main
 
 #---------------------------------------#
