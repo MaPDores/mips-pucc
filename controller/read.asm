@@ -7,12 +7,8 @@
 		strAno:			.asciiz		"Digite o ano da despesa: "
 		strCategoria:  	.asciiz 	"Digite a categoria da despesa: "
 		strGasto: 		.asciiz 	"Digite o valor gasto em reais: "
-		strDelete:      .asciiz     "Digite o ID da despesa que deseja excluir: "
-		Encontrado:		.asciiz		"Node encontrada!"
-		naoEncontrado:	.asciiz		"Node nao encontrada!"
 
 	.text
-
 registrarDespesa:
 
 	jal create_node
@@ -47,7 +43,7 @@ registrarDespesa:
 	set_day($t0, $v0)
 	# -------------------- #
 
- 	# Leitura e Set do M?s #
+ 	# Leitura e Set do Mês #
  	li $v0, 4
   	la $a0, strMes
   	syscall
@@ -69,7 +65,7 @@ registrarDespesa:
 	set_year($t0, $v0)
 	# -------------------- #
 
-	# Leitura e Set do Pre?o #
+	# Leitura e Set do Preço #
  	li $v0, 4
   	la $a0, strGasto
   	syscall
@@ -112,54 +108,5 @@ registrarDespesa:
 	# li $v0, 5
   	# syscall
 
-	j main
 
-excluiDespesa:
-
-        li $v0, 4
-        la $a0, strDelete
-        syscall
-
-        li $v0, 5
-        syscall
-
-		add $t1, $zero, $v0
-
-		li $t2, 0
-Procura:
-
-		beq $t0, $0, nodeNaoEncontrada
-		lw $t3, 0($t0)	
-		beq $t1, $t3, nodeEncontrada
-		add $t2, , $zero, $t0
-		lw $t0, 8($t0)
-		j Procura
-
-		nodeEncontrada:
-			li $v0, 4
-			la $a0, Encontrado
-			syscall
-			beq $t2, $zero, Delete
-
-
-		Delete:
-			lw $t2, 8($t0)				
-			add $s1, $zero, $t2			
-			j main
-
-		nodeNaoEncontrada:
-				
-			li $v0, 4
-			la $a0, naoEncontrado					
-			syscall				
-			j main
-
-
-		#percorrer todas as nodes procurando o id
-		#loop
-		#acha uma node
-		#eh esse o ID digitado?
-		#exclui
-		#senao, prossegue
-
-	    end_program
+	end_program
