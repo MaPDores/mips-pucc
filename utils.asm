@@ -1,8 +1,9 @@
 	.data
-	bar:	.asciiz		"/"
-	lf:  	.asciiz 	"\n"
-    divisor_bar:          .asciiz     "---------------------\n"
-	
+	bar:				.asciiz		"/"
+	lf:  				.asciiz 	"\n"
+    divisor_bar:		.asciiz     "---------------------\n"
+	blank_space:		.space		4
+
 	.text
 .macro	push (%data)
 	addi $sp, $sp, -4
@@ -24,6 +25,13 @@
 	li $v0, 4
   	la $a0, divisor_bar
   	syscall
+.end_macro
+
+.macro	pause
+	li $v0, 8
+	la $a0, blank_space
+	li $a1, 1
+	syscall
 .end_macro
 
 .macro	end_program
