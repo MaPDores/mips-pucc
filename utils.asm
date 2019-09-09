@@ -55,34 +55,3 @@ end:
 	sub $v0, $t7, $t6
 	jr $ra
 #---------------------------------------------------------------#
-
-# Pega os 3 valores da pilha e printa com '/' entre eles #
-print_date:
-	pop($t7)
-	add $a0, $t7, $zero
-	li $v0, 1
-	syscall
-
-	li $v0, 4
-	la $a0, bar
-	syscall
-	
-	pop($t7)
-	add $a0, $t7, $zero
-	li $v0, 1
-	syscall
-
-	li $v0, 4
-	la $a0, bar
-	syscall
-	
-	pop($t7)
-	add $a0, $t7, $zero
-	li $v0, 1
-	syscall
-
-	jr $ra
-# ------------------------------------------------------ #
-
-
-	

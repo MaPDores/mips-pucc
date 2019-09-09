@@ -12,16 +12,11 @@
 	
 	strOpc:			.asciiz 	"Digite a opcao desejada: "
 	
-	exibID:			.asciiz		"O ID da despesa é: "			
-	exibData: 		.asciiz 	"A data da despesa é: "
-	exibTipo:		.asciiz 	"O tipo da despesa é: "
-	exibValor:		.asciiz		"O valor gasto é: "
-	
 	excluirDespesa: 	.asciiz 	"Digite o ID da despesa que deseja excluir: "
 	
 	exibMensal: 		.asciiz 	"O valor total de gastos no mes foi: "
 	
-	exibCategoria: 		.asciiz 	"O valor total de gastos por categoria foi: "
+	exibPorCategoria: 		.asciiz 	"O valor total de gastos por categoria foi: "
 	
 	exibRanking:		.asciiz		"----------RANKING----------"
 

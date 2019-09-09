@@ -20,9 +20,7 @@ first_node:
 	# --------- #
 
  	# Leitura e Set da Categoria #
- 	li $v0, 4
-  	la $a0, strCategoria
-  	syscall
+	jal read_category
 
 	jal instantiate_category
 	li $v0, 8
@@ -33,9 +31,7 @@ first_node:
 	# -------------------------- #
 
  	# Leitura e Set do Dia #
- 	li $v0, 4
-  	la $a0, strDia
-  	syscall
+	jal read_day
 
 	li $v0, 5
   	syscall
@@ -44,9 +40,7 @@ first_node:
 	# -------------------- #
 
  	# Leitura e Set do Mês #
- 	li $v0, 4
-  	la $a0, strMes
-  	syscall
+	jal read_month
 
 	li $v0, 5
   	syscall
@@ -55,9 +49,7 @@ first_node:
 	# -------------------- #
 
 	# Leitura e Set do Ano #
- 	li $v0, 4
-  	la $a0, strAno
-  	syscall
+	jal read_year
 
 	li $v0, 5
   	syscall
@@ -66,9 +58,7 @@ first_node:
 	# -------------------- #
 
 	# Leitura e Set do Preço #
- 	li $v0, 4
-  	la $a0, strGasto
-  	syscall
+	jal read_price
 
 	li $v0, 6
 	syscall
