@@ -23,9 +23,6 @@ end_macro:
 .end_macro
 
 .macro push_node (%register_with_new, %base_pointer)
-	la $a1, (%base_pointer)
-loop:	addi $a0, $a1, 24
-	lw $a1, ($a0)
-	bnez $a1, loop
-	sw %register_with_new, ($a0)
+	add_node(%base_pointer, %register_with_new)
+	add %base_pointer, %register_with_new, $zero
 .end_macro

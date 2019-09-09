@@ -1,9 +1,9 @@
 	.data
-	bar:	.asciiz	"/"
-	lf:  			.asciiz 	"\n"
-
+	bar:	.asciiz		"/"
+	lf:  	.asciiz 	"\n"
+    divisor_bar:          .asciiz     "---------------------\n"
+	
 	.text
-
 .macro	push (%data)
 	addi $sp, $sp, -4
 	sw %data, ($sp)
@@ -17,6 +17,12 @@
 .macro	linefeed
 	li $v0, 4
   	la $a0, lf
+  	syscall
+.end_macro
+
+.macro	divisor
+	li $v0, 4
+  	la $a0, divisor_bar
   	syscall
 .end_macro
 
@@ -49,34 +55,3 @@ end:
 	sub $v0, $t7, $t6
 	jr $ra
 #---------------------------------------------------------------#
-
-# Pega os 3 valores da pilha e printa com '/' entre eles #
-print_date:
-	pop($t7)
-	add $a0, $t7, $zero
-	li $v0, 1
-	syscall
-
-	li $v0, 4
-	la $a0, bar
-	syscall
-	
-	pop($t7)
-	add $a0, $t7, $zero
-	li $v0, 1
-	syscall
-
-	li $v0, 4
-	la $a0, bar
-	syscall
-	
-	pop($t7)
-	add $a0, $t7, $zero
-	li $v0, 1
-	syscall
-
-	jr $ra
-# ------------------------------------------------------ #
-
-
-	

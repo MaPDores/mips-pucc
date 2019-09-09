@@ -1,4 +1,4 @@
-exibirRanking:
+exibir_ranking:
 	
 	li $v0, 4
 	la $a0, exibRanking	
