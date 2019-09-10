@@ -28,6 +28,8 @@ print_category:
 	li $v0, 4
 	syscall
 
+	linefeed
+
 	jr $ra
 
 

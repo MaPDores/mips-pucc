@@ -27,6 +27,8 @@ first_node:
 	li $a1, 16
 	syscall
 
+	remove_linefeed($a0)
+
 	set_category($t0, $a0)
 	# -------------------------- #
 

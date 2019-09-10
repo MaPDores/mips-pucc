@@ -1,5 +1,6 @@
 exclui_despesa:
 	beq $s0, 0, no_list
+
 	li $v0, 4
 	la $a0, excluirDespesa
 	syscall
@@ -24,9 +25,10 @@ looper_ed:
 delete_ed:
 	beq $t0, $t1, delete_from_begining
 	remove_next_node($t0)
-	j end
+	j end_ed
 delete_from_begining:
 	get_next($t0)
 	move $s0, $v0
 end_ed:
+	divisor
 	jr $ra
