@@ -1,5 +1,5 @@
 	.data
-		strCategoria:  	.asciiz 	"-------------------------\nDigite a categoria da despesa: "
+		strCategoria:  	.asciiz 	"Digite a categoria da despesa: "
 		strDia:	 		.asciiz		"Digite o dia da despesa: "
 		strMes:			.asciiz		"Digite o mes da despesa: "
 		strAno:			.asciiz		"Digite o ano da despesa: "

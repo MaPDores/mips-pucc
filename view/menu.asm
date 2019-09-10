@@ -61,7 +61,7 @@ main:
 	
   	beq $v0, 1,   jal_registrar_despesa
   	beq $v0, 2,   jal_lista_despesa
-  	# beq $v0, 3, jal_exclui_despesa	
+  	beq $v0, 3, jal_exclui_despesa	
   	# beq $v0, 4, jal_exibir_mensal
   	# beq $v0, 5, jal_exibir_categoria
   	# beq $v0, 6, jal_exibir_ranking	
@@ -70,26 +70,32 @@ main:
 
 #---------------------------------------#
 jal_registrar_despesa:
+	divisor
 	jal registrar_despesa
 	j main
 
 jal_lista_despesa:
+	divisor
 	jal lista_despesa
 	j main
 
 jal_exclui_despesa:
+	divisor
 	jal exclui_despesa
 	j main
 
 jal_exibir_mensal:
+	divisor
 	jal exibir_mensal
 	j main
 
 jal_exibir_categoria:
+	divisor
 	jal exibir_categoria
 	j main
 
 jal_exibir_ranking:
+	divisor
 	jal exibir_ranking
 	j main
 

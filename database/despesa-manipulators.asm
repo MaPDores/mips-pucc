@@ -66,3 +66,7 @@ instantiate_category: # Salva em $v0 o endere�o guardado pra string de categor
 .macro set_price (%node, %value)
 	s.s %value, 20(%node)	# Salva pre�o em $f12
 .end_macro
+
+.macro set_next (%node, %value)
+	sw %value, 24(%node)	# Salva proxima
+.end_macro
