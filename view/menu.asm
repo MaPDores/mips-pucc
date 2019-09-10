@@ -64,7 +64,7 @@ main:
   	beq $v0, 3, jal_exclui_despesa	
   	# beq $v0, 4, jal_exibir_mensal
   	beq $v0, 5, jal_exibir_categoria
-  	# beq $v0, 6, jal_exibir_ranking	
+  	beq $v0, 6, jal_exibir_ranking	
    	beq $v0, 7, Exit
 	j main
 
