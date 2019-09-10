@@ -1,4 +1,5 @@
 exibir_categoria:
+	beq $s0, 0, no_list
 # 	push($ra)
 
 # 	add $t0, $s0, $0
