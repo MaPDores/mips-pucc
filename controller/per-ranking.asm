@@ -81,9 +81,9 @@ sort_loop_bs:
 	beq $v0, $a2, next_step_bs  # se for igual ao final, vai pra next step
     move $t2, $v0
 
-	get_category($t2)
+	get_price($t2)
 	add $a1, $v0, $zero
-	get_category($t0)
+	get_price($t0)
 	add $a0, $v0, $zero
 
 	jal compare_string      # compara
